@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import './App.css'
 import Navbar from "./public components/Navbar"
 import Events from "./public components/Events";

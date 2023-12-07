@@ -1,16 +1,20 @@
-import {SetStateAction, useState} from "react";
+import { useState, useEffect } from "react";
 
 const Navbar = ({onSearch}) => {
     const [search, setSearch] = useState("");
 
-    const handleInputChange = (evt: { target: { value: SetStateAction<string>; }; }) => {
+    useEffect(() => {
+        console.log("1010 effecto");
+    }, [search, onSearch]);
+
+    const handleInputChange = (evt) => {
         setSearch(evt.target.value);
     };
 
-    const handleInputKeyDown = (evt: { key: string; }) => {
+    const handleInputKeyDown = (evt) => {
         if (evt.key === "Enter") {
             onSearch(search);
-        }
+        } 
     };
 
     return (

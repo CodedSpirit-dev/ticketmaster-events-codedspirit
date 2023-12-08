@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
  * @returns {JSX.Element} JSX del formulario de registro
  */
 const SignupForm = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {
     register,
     handleSubmit,

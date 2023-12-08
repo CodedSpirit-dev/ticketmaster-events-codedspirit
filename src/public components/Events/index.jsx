@@ -1,6 +1,7 @@
 import useEventsData from "../../hooks/useEventsData";
 import EventItem from "./components/EventItem";
 
+
 /**
  * Componente que muestra la lista de eventos.
  * @param {string} searchTerm Término de búsqueda para filtrar eventos

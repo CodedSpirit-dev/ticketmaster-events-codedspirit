@@ -35,13 +35,18 @@ const Navbar = forwardRef(({onSearch}, ref) => {
   };
 
   return (
-    <div ref={ref}>
-      <p>Eventos</p>
+    <div ref={ref} className="navbar">
+      <div>
+        <h1 className="navbar-title">Busqueda de eventos</h1>
+      </div>
+      <div className="navbar-search">
       <input type="text" placeholder="Buscar eventos"
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
         value={search}
+        className="navbar-search-input"
       />
+      </div>
     </div>
   );
 });

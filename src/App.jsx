@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 import Navbar from "./public components/Navbar";
 import Events from "./public components/Events";
@@ -10,19 +10,21 @@ import SignupForm from "./public components/SignupForm";
  */
 function App() {
   const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
+  const containerRef = useRef(); // Referencia al contenedor del Navbar
 
   /**
    * Maneja la búsqueda desde el componente Navbar.
    * @param {string} term Término de búsqueda
    */
   const handleNavbarSearch = (term) => {
+    console.log(containerRef.current); // Imprime la referencia al contenedor del Navbar
     setSearchTerm(term); // Actualiza el estado con el término de búsqueda
   };
 
   return (
     <>
       {/* Renderiza el Navbar con la función handleNavbarSearch como prop */}
-      <Navbar onSearch={handleNavbarSearch} />
+      <Navbar onSearch={handleNavbarSearch} ref={containerRef} />
       {/* Renderiza el componente Events con el término de búsqueda */}
       <Events searchTerm={searchTerm} />
       {/* Renderiza el componente SignupForm */}

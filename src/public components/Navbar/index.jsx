@@ -1,16 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 
 /**
  * Componente Navbar que permite la búsqueda de eventos.
  * @param {function} onSearch Función que se llama cuando se realiza una búsqueda.
  */
-const Navbar = ({onSearch}) => {
+const Navbar = forwardRef(({onSearch}, ref) => {
   const [search, setSearch] = useState(""); // Estado para la búsqueda
-  const containerRef = useRef(); // Referencia al contenedor del Navbar
 
   useEffect(() => {
-    console.log("1010 efecto"); // Efecto que se ejecuta cuando cambia la búsqueda o la función onSearch
+    // Efecto que se ejecuta cuando cambia la búsqueda o la función onSearch
   }, [search, onSearch]);
+
+  useImperativeHandle(ref, () => ({
+      search,
+      setSearch
+  }))
 
   /**
    * Maneja el cambio del valor del input de la búsqueda.
@@ -31,7 +35,7 @@ const Navbar = ({onSearch}) => {
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={ref}>
       <p>Eventos</p>
       <input type="text" placeholder="Buscar eventos"
         onChange={handleInputChange}
@@ -40,6 +44,8 @@ const Navbar = ({onSearch}) => {
       />
     </div>
   );
-};
+});
+
+Navbar.displayName = "Navbar";
 
 export default Navbar;

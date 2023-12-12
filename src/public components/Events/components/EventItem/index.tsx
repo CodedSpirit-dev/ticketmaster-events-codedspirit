@@ -1,3 +1,5 @@
+import styles from "./EventItem.module.css";
+
 interface EventItemProps {
   info: string | undefined;
   id: string;
@@ -20,12 +22,14 @@ const EventItem: React.FC<EventItemProps> = ({
   };
 
   return (
-    <div className="eventItemContainer">
-      <img src={image} alt={name} width={300} height={200} />
-      <div className="eventItemContainer-info">
-        <h4>{name}</h4>
-        <p>{info}</p>
-        <button onClick={handleSeeMoreClick}>Ver mas detalles</button>
+    <div className={styles.eventItem}>
+      <img className={styles.eventItemImage} src={image} alt={name} />
+      <div className={styles.eventItemInfo}>
+        <h4 className={styles.eventItemTitle}>{name}</h4>
+        <p className={styles.eventItemDescription}>{info}</p>
+        <button className={styles.eventItemButton} onClick={handleSeeMoreClick}>
+          Ver mas detalles
+        </button>
       </div>
     </div>
   );

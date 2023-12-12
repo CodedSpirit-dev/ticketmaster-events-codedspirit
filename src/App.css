@@ -80,11 +80,3 @@
     }
   }
 }
-
-.eventItemContainer {
-  display: flex;
-  margin: 2.4rem 0;
-  .eventItemContainer-info {
-    flex-direction: column;
-  }
-}

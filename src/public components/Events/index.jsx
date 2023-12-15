@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import useEventsData from "../../hooks/useEventsData";
 import EventItem from "./components/EventItem";
 
@@ -7,6 +8,8 @@ import EventItem from "./components/EventItem";
  * @param {string} searchTerm Término de búsqueda para filtrar eventos
  */
 const Events = ({ searchTerm }) => {
+
+  const navigate = useNavigate();
   const { events, loading, error } = useEventsData(); // Obtiene data de eventos, loading y error
 
   /**
@@ -14,7 +17,7 @@ const Events = ({ searchTerm }) => {
    * @param {string} id Id del evento clickeado
    */
   const handleEventClick = (id) => {
-    console.log("evento clickeado", id); // Imprime el id del evento clickeado
+    navigate(`/detail/${id}`);
   };
 
   /**

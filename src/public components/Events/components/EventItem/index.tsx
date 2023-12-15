@@ -28,7 +28,10 @@ const EventItem: React.FC<EventItemProps> = ({
         <h4 className={styles.eventItemTitle}>{name}</h4>
         <p className={styles.eventItemDescription}>{info}</p>
         <button className={styles.eventItemButton} onClick={handleSeeMoreClick}>
-          Ver mas detalles
+          {/*<Link to={`/events/${id}`}>
+            
+  </Link>*/}
+          Ver mas
         </button>
       </div>
     </div>

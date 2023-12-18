@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import eventsJson from "../data/events.json";
+// import eventsJson from "../data/events.json";
 
 /**
  * Hook personalizado que se encarga de cargar la data de eventos.
@@ -11,14 +11,19 @@ const useEventsData = () => {
   const [error, setError] = useState(); // Estado para el error
 
   useEffect(() => {
-    setTimeout(() => {
+    const fetchEvents = async () => {
       try {
-        setData(eventsJson); // Carga la data de eventos.json
-        setLoading(false); // Finaliza la carga
+        const response = await fetch("https://app.ticketmaster.com/discovery/v2/events.json?apikey=yH0VHJiTyNNqF2M4z9yMu5CNhKIGcJfO&countryCode=MX");
+        const data = await response.json();
+
+        setData(data);
+        setLoading(false);
+        
       } catch (error) {
-        setError(error); // En caso de error, lo almacena
+        setError(error);
       }
-    }, 3000); // Retraso simulado de 3 segundos
+    }
+    fetchEvents();
   }, []);
 
   return {

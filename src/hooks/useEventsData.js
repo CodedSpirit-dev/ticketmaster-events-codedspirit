@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // import eventsJson from "../data/events.json";
 
 /**
@@ -10,26 +10,24 @@ const useEventsData = () => {
   const [loading, setLoading] = useState(true); // Flag de carga
   const [error, setError] = useState(); // Estado para el error
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await fetch("https://app.ticketmaster.com/discovery/v2/events.json?apikey=yH0VHJiTyNNqF2M4z9yMu5CNhKIGcJfO&countryCode=MX");
-        const data = await response.json();
+const fetchEvents = async () => {
+  try {
+    const response = await fetch("https://app.ticketmaster.com/discovery/v2/events.json?apikey=yH0VHJiTyNNqF2M4z9yMu5CNhKIGcJfO&countryCode=MX");
+    const data = await response.json();
 
-        setData(data);
-        setLoading(false);
-        
-      } catch (error) {
-        setError(error);
-      }
-    }
-    fetchEvents();
-  }, []);
+    setData(data);
+    setLoading(false);
+
+  } catch (error) {
+    setError(error);
+  }
+}
 
   return {
     events: data?._embedded?.events || [], // Array de eventos extraído del objeto data
     loading, // Flag de carga
     error, // Error if any
+    fetchEvents,
   };
 };
 

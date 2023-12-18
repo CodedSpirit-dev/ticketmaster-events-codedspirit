@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import useEventsData from "../../hooks/useEventsData";
 import EventItem from "./components/EventItem";
 
 
@@ -7,10 +6,9 @@ import EventItem from "./components/EventItem";
  * Componente que muestra la lista de eventos.
  * @param {string} searchTerm Término de búsqueda para filtrar eventos
  */
-const Events = ({ searchTerm }) => {
+const Events = ({ searchTerm, events }) => {
 
   const navigate = useNavigate();
-  const { events, loading, error } = useEventsData(); // Obtiene data de eventos, loading y error
 
   /**
    * Maneja el click en un evento.
@@ -50,13 +48,6 @@ const Events = ({ searchTerm }) => {
       />
     ));
   };
-
-  if (error) { // En caso de error
-    return <p>Ha ocurrido un error.</p>;
-  }
-  if (loading) { // Mientras carga
-    return <p>Cargando...</p>;
-  }
 
   return (
     <div>

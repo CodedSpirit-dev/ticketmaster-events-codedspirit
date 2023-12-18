@@ -1,10 +1,17 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Navbar from "../../public components/Navbar";
 import Events from "../../public components/Events";
+import useEventsData from "../../hooks/useEventsData";
 
 const Home = () => {
+  const { events, loading, error, fetchEvents } = useEventsData(); // Obtiene data de eventos, loading y error
+
   const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
   const containerRef = useRef(); // Referencia al contenedor del Navbar
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   /**
    * Maneja la búsqueda desde el componente Navbar.
@@ -17,8 +24,10 @@ const Home = () => {
 
   return (
     <>
-        <Navbar onSearch={handleNavbarSearch} ref={containerRef} />
-        <Events searchTerm={searchTerm} />
+      <Navbar onSearch={handleNavbarSearch} ref={containerRef} />
+      {loading ? <p>Cargando...</p> : <Events searchTerm={searchTerm} events={events} loading={loading} error={error} />}
+      {!!error && <p>Ha ocurrido un error.</p>}
+      
     </>
   );
 }

@@ -1,32 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import EventItem from "./components/EventItem";
 
-
-/**
- * Componente que muestra la lista de eventos.
- * @param {string} searchTerm Término de búsqueda para filtrar eventos
- */
 const Events = ({ searchTerm, events }) => {
-
   const navigate = useNavigate();
 
-  /**
-   * Maneja el click en un evento.
-   * @param {string} id Id del evento clickeado
-   */
   const handleEventClick = (id) => {
     navigate(`/detail/${id}`);
   };
 
-  /**
-   * Renderiza la lista de eventos.
-   * @returns {JSX.Element} JSX con la lista de eventos
-   */
   const renderEvents = () => {
-    let eventsFiltered = events; // Copia del array de eventos
+    let eventsFiltered = events; 
 
-    if (searchTerm && searchTerm.length > 0) { // Si hay término de búsqueda
-      eventsFiltered = eventsFiltered.filter((item) => // Filtra eventos por nombre
+    if (searchTerm && searchTerm.length > 0) { 
+      eventsFiltered = eventsFiltered.filter((item) => 
         item.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
@@ -52,7 +38,7 @@ const Events = ({ searchTerm, events }) => {
   return (
     <div>
       Eventos
-      {renderEvents()} // Renderiza la lista de eventos
+      {renderEvents()}
     </div>
   );
 };

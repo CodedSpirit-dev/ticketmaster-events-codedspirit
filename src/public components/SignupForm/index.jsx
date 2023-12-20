@@ -24,7 +24,7 @@ const SignupForm = () => {
    * @param {Object} data Objeto con los datos del formulario
    */
   const handleSubmitForm = (data) => {
-    console.log(data); // Imprime los datos del formulario
+    // Imprime los datos del formulario
   };
 
   return (

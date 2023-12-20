@@ -15,7 +15,7 @@ const Detail = () => {
     useEffect(() => {
         const fetchEventData = async () => {
             try {
-                const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events/${eventId}?apikey=yH0VHJiTyNNqF2M4z9yMu5CNhKIGcJfO`)
+                const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events/${eventId}?apikey=${import.meta.env.VITE_TICKETMASTER_API_KEY}`)
                 const data = await response.json()
 
                 setEventData(data)
@@ -36,12 +36,11 @@ const Detail = () => {
         return  <Error404 />
     }
 
-    console.log(eventData)
     return (
         <div className={styles.container}>
             <div className={styles.container__mainInfo}>
                 <h2 className={styles.container__mainInfo__title}>{eventData.name}</h2>
-                <img className={styles.container__mainInfo__image} src={eventData.images?.[1].url} alt={eventData.name} />
+                <img className={styles.container__mainInfo__image} src={eventData.images?.[7].url} alt={eventData.name} />
                 <p className={styles.container__mainInfo__date}>{format(new Date(eventData.dates.start.localDate), 'dd/MM/yyyy')} a las {eventData.dates.start.localTime} horas</p>
                 <p className={styles.container__mainInfo__description}>{eventData.info}</p>
             </div>

@@ -1,58 +1,68 @@
+/* Detail.module.css */
+
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 .container__mainInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .container__mainInfo__title {
-    font-size: 2.8rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  font-size: 2.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .container__mainInfo__image {
-    width: 60%;
-    height: 60%;
-    margin: 0;
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px;
 }
 
 .container__mainInfo__date {
-    font-size: 1.2rem;
-    margin: 0.4rem 0;
+  font-size: 1.2rem;
+  margin: 0.4rem 0;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .container__mainInfo__description {
-    font-size: 1.6rem;
-    text-align: left;
-    margin: 0.4rem 0;
+  font-size: 1.6rem;
+  text-align: justify;
+  margin: 0.4rem 0;
 }
 
-.container__additionalInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0;
+.container__additionalInfo,
+.container__mainInfo {
+  font-size: 1.6rem;
 }
 
 .container__additionalInfo__title {
-    font-size: 2.8rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  font-size: 2.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .container__additionalInfo__description {
-    font-size: 1.6rem;
-    text-align: left;
-    margin: 0.4rem 0;
+  text-align: center;
+  margin: 0.4rem 0;
+}
 
+.container__additionalInfo__seatmap {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
 }

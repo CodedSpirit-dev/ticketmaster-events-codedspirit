@@ -2,11 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Navbar from "../../public components/Navbar";
 import Events from "../../public components/Events";
-import useEventsData from "../../hooks/useEventsData";
+import useEventsResults from "../../state/events-results.js";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const { events, loading, error, fetchEvents, page } = useEventsData(); // Obtiene data de eventos, loading y error
+  const { data, loading, error, fetchEvents } = useEventsResults(); // Obtiene data de eventos, loading y error
+  const events = data?._embedded?.events || []; // Array de eventos extraído del objeto data
+  const page = data?.page || {};
   const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
   const containerRef = useRef(); // Referencia al contenedor del Navbar
 

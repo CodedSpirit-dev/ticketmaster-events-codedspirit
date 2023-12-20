@@ -3,10 +3,11 @@ import { useParams } from "react-router-dom"
 import { format } from "date-fns"
 
 import Error404 from "../Error 404"
-
+import useEventsResults from "../../state/events-results.js";
 import styles from './Detail.module.css'
 
 const Detail = () => {
+    const { data } = useEventsResults();
     const { eventId } = useParams()
     const [eventData, setEventData] = useState({})
     const [error, setError] = useState({})

@@ -1,27 +1,8 @@
-import { useState } from "react";
+import useEventsResults from "../state/events-results.js";
 
+// Store para guardar valores de manera local
 const useEventsData = () => {
-  const [data, setData] = useState({}); // Estado para la data
-  const [loading, setLoading] = useState(true); // Flag de carga
-  const [error, setError] = useState(); // Estado para el error
-
-const fetchEvents = async (params) => {
-  try {
-    const response = await fetch(
-      `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${import.meta.env.VITE_TICKETMASTER_API_KEY}&countryCode=MX${
-        params?.length ? params : ""
-      }`
-    );
-    const data = await response.json();
-
-    setData(data);
-    setLoading(false);
-
-  } catch (error) {
-    setError(error);
-  }
-}
-
+  const { data, loading, error, fetchEvents } = useEventsResults()
   return {
     events: data?._embedded?.events || [], // Array de eventos extraído del objeto data
     page: data?.page || {}, // Objeto con la información de la página

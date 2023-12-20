@@ -40,10 +40,18 @@ const Detail = () => {
     return (
         <div className={styles.container}>
             <div className={styles.container__mainInfo}>
-                <img src={eventData.images?.[1].url} alt={eventData.name} />
-                <h2>{eventData.name}</h2>
-                <p>{format(new Date(eventData.dates.start.localDate), 'dd/MM/yyyy')} a las {eventData.dates.start.localTime} horas</p>
-                <p>{eventData.info}</p>
+                <h2 className={styles.container__mainInfo__title}>{eventData.name}</h2>
+                <img className={styles.container__mainInfo__image} src={eventData.images?.[1].url} alt={eventData.name} />
+                <p className={styles.container__mainInfo__date}>{format(new Date(eventData.dates.start.localDate), 'dd/MM/yyyy')} a las {eventData.dates.start.localTime} horas</p>
+                <p className={styles.container__mainInfo__description}>{eventData.info}</p>
+            </div>
+            <div className={styles.container__additionalInfo}>
+                { eventData.seatmap && <img className={styles.container__additionalInfo__seatmap} src={eventData.seatmap.staticUrl} alt={eventData.name} /> }
+                <p className={styles.container__additionalInfo__title}>Información adicional</p>
+                <p className={styles.container__additionalInfo__description}> Rango de precios: ${eventData.priceRanges[0].min} {eventData.priceRanges[0].currency} hasta ${eventData.priceRanges[0].max} {eventData.priceRanges[0].currency}</p>
+                <p className={styles.container__additionalInfo__description}>Calle: {eventData._embedded.venues[0].address.line1}</p>
+                <p className={styles.container__additionalInfo__description}>Ciudad: {eventData._embedded.venues[0].city.name}</p>
+                <p className={styles.container__additionalInfo__description}>Pais: {eventData._embedded.venues[0].country.name}</p>
             </div>
         </div>
     )

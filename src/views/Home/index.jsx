@@ -34,32 +34,32 @@ const Home = () => {
       return <p>Ha ocurrido un error</p>;
     }
     return (
-      <div>
-        <Events searchTerm={searchTerm} events={events} />
-        <ReactPaginate
-          className={styles.pagination}
-          nextClassName={styles.next}
-          previousClassName={styles.previous}
-          pageClassName={styles.page}
-          activeClassName={styles.active}
-          disabledClassName={styles.disabled}
-          breakLabel="..."
-          nextLabel=">"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={page.totalPages}
-          previousLabel="<"
-          renderOnZeroPageCount={null}
-        />
-      </div>
+        <div>
+          <Events searchTerm={searchTerm} events={events} />
+          <ReactPaginate
+              className={styles.pagination}
+              nextClassName={styles.next}
+              previousClassName={styles.previous}
+              pageClassName={styles.page}
+              activeClassName={styles.active}
+              disabledClassName={styles.disabled}
+              breakLabel="..."
+              nextLabel=">"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              pageCount={page.totalPages}
+              previousLabel="<"
+              renderOnZeroPageCount={null}
+          />
+        </div>
     );
   };
 
   return (
-    <>
-      <Navbar onSearch={handleNavbarSearch} ref={containerRef} />
-      {renderEvents()}
-    </>
+      <>
+        <Navbar onSearch={handleNavbarSearch} ref={containerRef} />
+        {renderEvents()}
+      </>
   );
 };
 export default Home;

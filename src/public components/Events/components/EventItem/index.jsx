@@ -1,40 +1,25 @@
 import styles from "./EventItem.module.css";
 import HeartFilled from "../../../../assets/hearth-filled.png";
 import HeartUnfilled from "../../../../assets/hearth-unfilled.png";
-import useLikedEvents from "../../../../hooks/useLikedEvents";
+import useLikedEvents from "../../../../hooks/useLikedEvents.js"
 
-interface EventItemProps {
-  info: string | undefined;
-  id: string;
-  name: string;
-  image: string;
-  onEventClick: (id: string) => void;
-  evt: string; // Add the missing 'evt' prop
-}
+const EventItem = ({info,id,name,image,onEventClick,}) => {
+  const { isEventLiked, toggleEventlike } = useLikedEvents(id);
 
-const EventItem: React.FC<EventItemProps> = ({
-  info,
-  id,
-  name,
-  image,
-  onEventClick,
-}) => {
-  const { isEventLiked } = useLikedEvents(id);
-
-  const handleSeeMoreClick = (evt: { stopPropagation: () => void }) => {
+  const handleSeeMoreClick = (evt) => {
     evt.stopPropagation();
     onEventClick(id);
-  };
+  }
 
-  const handleHearthClick = (evt: { stopPropagation: () => void }) => {
-
+  const handleHearthClick = () => {
+    toggleEventlike();
   }
 
   return (
     <div className={styles.eventItem}>
 
       <div className={styles.heartContainer}>
-        <img src={ isEventLiked ?  HeartFilled : HeartUnfilled} className={styles.heartImage} alt="heart" onClick={handleHearthClick} />
+        <img src={isEventLiked ? HeartFilled : HeartUnfilled} className={styles.heartImage} alt="heart" onClick={handleHearthClick} />
       </div>
 
       <img className={styles.eventItemImage} src={image} alt={name} />

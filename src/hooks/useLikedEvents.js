@@ -7,10 +7,10 @@ const checkIsEventLiked = (likedEvents, eventId) => {
     return storedLikedEvents.includes(eventId);
 }
 const useLikedEvents = (eventId) => {
-    const [isEventLiked, setIsEventLiked] = useState(false)
+    const [isEventLiked, setIsEventLiked] = useState(checkIsEventLiked(eventId));
 
     const toggleEventlike = () => {
-        const likedEvents = localStorage.getItem(LIKED_EVENTS_STORAGE_KEY) || '[]';
+        const likedEvents = JSON.parse(localStorage.getItem(LIKED_EVENTS_STORAGE_KEY) || '[]');
         const eventIndex = likedEvents.indexOf(eventId);
 
         if (eventIndex !== -1) {

@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import { Link } from "react-router-dom";
 
 /**
  * Componente Navbar que permite la búsqueda de eventos.
@@ -45,7 +46,12 @@ const Navbar = forwardRef(({onSearch}, ref) => {
         onKeyDown={handleInputKeyDown}
         value={search}
         className="navbar-search-input"
-      />
+        />
+        <Link to="/profile/my-info" style={{
+          marginLeft: 10,
+          color: "#213547",
+          textDecoration: "none",
+        }}>Mi perfil</Link>
       </div>
     </div>
   );

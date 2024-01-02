@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 import { LIKED_EVENTS_STORAGE_KEY } from "../../../../utils/constants"
-import { set } from "date-fns";
 import EventItem from '../../../../public components/Events/components/EventItem'
 
 
@@ -8,6 +8,7 @@ const LikedEvents = () => {
     const [events, setEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState({});
+    const navigate = useNavigate(); // Corregir llamando a la función useNavigate
 
     useEffect(() => {
         const fetchEventsDetails = async () => {
@@ -34,8 +35,8 @@ const LikedEvents = () => {
         fetchEventsDetails();
     }, []);
 
-    const handleEventClick = () => {
-        // Lógica para manejar el clic del evento si es necesario
+    const handleEventClick = (id) => {
+        navigate(`/detail/${id}`);
     };
 
     if (Object.keys(error).length > 0) {
@@ -53,7 +54,7 @@ const LikedEvents = () => {
                     name={event.name}
                     info={event.info}
                     image={event.images[0].url}
-                    onEventClick={handleEventClick}
+                    onEventClick={() => handleEventClick(event.id)} // Llamar handleEventClick con el ID del evento
                     id={event.id}
                 />
             ))}

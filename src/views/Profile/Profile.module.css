@@ -1,0 +1,22 @@
+.active {
+    border-bottom: 2px solid #3b6183;
+}
+
+.tab {
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.tab:hover{
+    opacity: 0.8;
+}
+
+.tabsContainer{
+    margin: 12px 0;
+}
+
+.homeLink {
+    text-decoration: none;
+}

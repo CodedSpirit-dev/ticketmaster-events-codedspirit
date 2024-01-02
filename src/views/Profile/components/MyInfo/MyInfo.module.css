@@ -1,0 +1,44 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px; /* Agregado espacio entre el borde del formulario y los elementos internos */
+}
+
+.label {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0; /* Aumentado el margen para más espacio entre las etiquetas */
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    font-size: 16px;
+    width: 280px;
+    padding: 8px; /* Aumentado el relleno para más espacio dentro del input */
+    margin-top: 8px;
+    border: 1px solid #ddd; /* Agregado un borde para mejorar la apariencia */
+}
+
+.input:invalid {
+    border-color: red; /* Cambia el color del borde en caso de error */
+}
+
+.submitButton {
+    width: 260px;
+    padding: 10px;
+    margin-top: 16px;
+    background: #3b6183;
+    color: whitesmoke;
+    border: none;
+    border-radius: 5px; /* Agregado un borde redondeado */
+    cursor: pointer; /* Indica que el botón es interactivo */
+    transition: background 0.3s ease; /* Agregado un efecto de transición al color de fondo */
+}
+
+.submitButton:hover {
+    background: #304e68; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+}

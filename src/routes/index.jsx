@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Suspense } from "react";
 
 import Home from "../views/Home";
 import Detail from "../views/Detail";
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/detail/:eventId",
-        element: <Detail/>
+        element: (
+            <Suspense fallback={<div>Cargando...</div>}>
+                <Detail />
+            </Suspense>
+            )
     },
     {
         path: "/profile",

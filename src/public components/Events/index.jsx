@@ -10,25 +10,24 @@ const Events = ({ searchTerm, events }) => {
   };
 
   const renderEvents = () => {
-    let eventsFiltered = events; 
+    let eventsFiltered = events;
 
-    if (searchTerm && searchTerm.length > 0) { 
-      eventsFiltered = eventsFiltered.filter((item) => 
+    if (searchTerm && searchTerm.length > 0) {
+      eventsFiltered = eventsFiltered.filter((item) =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
-    if (eventsFiltered.length === 0) { // Si no hay eventos
+    if (eventsFiltered.length === 0) {
       return <p>No se encontraron eventos.</p>;
     }
 
-    // Renderiza cada evento
     return eventsFiltered.map((eventItem) => (
       <EventItem
         key={`event-item-${eventItem.id}`}
         name={eventItem.name}
         info={eventItem.info}
-        image={eventItem.images[0].url}
+        image={eventItem.images[0]?.url} // Considera agregar una verificación de existencia para evitar errores si no hay imágenes
         onEventClick={handleEventClick}
         id={eventItem.id}
         evt={""} // Valor de evt no especificado
@@ -38,7 +37,7 @@ const Events = ({ searchTerm, events }) => {
 
   return (
     <div>
-      Eventos
+      <h2>Eventos</h2> {/* Agrega un encabezado para mayor claridad */}
       {renderEvents()}
     </div>
   );

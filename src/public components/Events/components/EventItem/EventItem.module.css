@@ -5,8 +5,10 @@
 }
 
 .eventItemImage {
-  width: 200px;
-  height: 200px;
+  max-width: 455px;
+  max-height: 200px;
+  min-width: 455px;
+  min-height: 200px;
   image-rendering: smooth;
   border-radius: 10px;
 }

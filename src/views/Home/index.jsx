@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import ReactPaginate from "react-paginate";
 import Navbar from "../../public components/Navbar";
 import Events from "../../public components/Events";
@@ -6,24 +6,24 @@ import useEventsResults from "../../state/events-results.js";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const { data, loading, error, fetchEvents } = useEventsResults(); // Obtiene data de eventos, loading y error
-  const events = data?._embedded?.events || []; // Array de eventos extraído del objeto data
-  const page = data?.page || {};
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
-  const containerRef = useRef(); // Referencia al contenedor del Navbar
+  const { data, loading, error, fetchEvents } = useEventsResults();
+  const events = useMemo(() => data?._embedded?.events || [], [data?._embedded?.events]);
+  const page = useMemo(() => data?.page || {}, [data?.page]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const containerRef = useRef();
 
   useEffect(() => {
     fetchEvents();
-  }, []);
+  }, [fetchEvents]);
 
   const handleNavbarSearch = (term) => {
     setSearchTerm(term);
     fetchEvents(`&keyword=${term}`);
   };
 
-  const handlePageClick = ( {selected} ) => {
+  const handlePageClick = useCallback(({ selected }) => {
     fetchEvents(`&keyword=${searchTerm}&page=${selected}`);
-  };
+  }, [fetchEvents, searchTerm]);
 
   const renderEvents = () => {
     if (loading) {
@@ -33,33 +33,35 @@ const Home = () => {
     if (error) {
       return <p>Ha ocurrido un error</p>;
     }
+
     return (
-        <div>
-          <Events searchTerm={searchTerm} events={events} />
-          <ReactPaginate
-              className={styles.pagination}
-              nextClassName={styles.next}
-              previousClassName={styles.previous}
-              pageClassName={styles.page}
-              activeClassName={styles.active}
-              disabledClassName={styles.disabled}
-              breakLabel="..."
-              nextLabel=">"
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={page.totalPages}
-              previousLabel="<"
-              renderOnZeroPageCount={null}
-          />
-        </div>
+      <div>
+        <Events searchTerm={searchTerm} events={events} />
+        <ReactPaginate
+          className={styles.pagination}
+          nextClassName={styles.next}
+          previousClassName={styles.previous}
+          pageClassName={styles.page}
+          activeClassName={styles.active}
+          disabledClassName={styles.disabled}
+          breakLabel="..."
+          nextLabel=">"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={page.totalPages}
+          previousLabel="<"
+          renderOnZeroPageCount={null}
+        />
+      </div>
     );
   };
 
   return (
-      <>
-        <Navbar onSearch={handleNavbarSearch} ref={containerRef} />
-        {renderEvents()}
-      </>
+    <>
+      <Navbar onSearch={handleNavbarSearch} ref={containerRef} />
+      {renderEvents()}
+    </>
   );
 };
+
 export default Home;
